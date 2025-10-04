@@ -1,0 +1,12 @@
+services:
+  mqtt-mock-publisher:
+    image: your-docker-org/mock_mqtt_app:latest
+
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - ../config/mqtt-server/mock-client:/app/certs/mock-client:ro
+      - ../config/mqtt-server/certs:/app/certs/ca:ro
+    networks:
+      - garden-net

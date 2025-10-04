@@ -1,0 +1,78 @@
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+.black_venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs & runtime files
+*.log
+*.pid
+*.db
+*.sqlite3
+
+.coverage
+.tox/
+.nox/
+coverage.xml
+htmlcov/
+.pytest_cache/
+
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MyPy & Pyright
+.mypy_cache/
+.pyright/
+
+# Pyre type checker
+.pyre/
+
+# Black config cache (rare)
+.cache/
+
+# IDEs & editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Secrets (optional, if used)
+.env
+
+
+# MacOS / Windows
+.DS_Store
+Thumbs.db
+
+app/utils/prepare_esp/spiffs_data
+
+config/mqtt-server/private/
+config/mqtt-server/backend
+config/mqtt-server/mock-client
+config/mqtt-server/*.key
+config/mqtt-server/mosquitto/certs/*.key
+
+config/mqtt-server/certs/server.crt
+config/mqtt-server/mosquitto/certs/server.crt
+
+config/mqtt-server/mosquitto/data/
+config/mqtt-server/mosquitto/log/
+
+firebase-service-account.json
+docs/_build
+.env

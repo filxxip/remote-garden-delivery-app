@@ -1,0 +1,12 @@
+services:
+  csr-signer:
+    image: your-docker-org/csr_signer_app:latest
+
+    restart: unless-stopped
+    volumes:
+      - ../config/mqtt-server/private/ca.key:/app/ca/ca.key:ro
+      - ../config/mqtt-server/certs/ca.crt:/app/ca/ca.crt:ro
+    env_file:
+      - ./.env
+    networks:
+      - garden-net

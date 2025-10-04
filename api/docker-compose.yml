@@ -1,0 +1,85 @@
+services:
+  api:
+    image: your-docker-org/api_app:latest
+
+    restart: unless-stopped
+    env_file:
+      - ./.env
+      - ../.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - ../config/mqtt-server/backend/backend.crt:/app/ca/backend.crt:ro
+      - ../config/mqtt-server/backend/backend.key:/app/ca/backend.key:ro
+      - ../config/mqtt-server/certs/ca.crt:/app/ca/ca.crt:ro
+      - ../config/firebase/firebase-service-account.json:/app/firebase-service-account.json:ro
+    networks:
+      - garden-net
+
+  db:
+    image: postgres:15
+
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - garden-db-data:/var/lib/postgresql/data
+    networks:
+      - garden-net
+
+  redis:
+    image: redis:6.2-alpine
+
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - garden-net
+
+  celery:
+    image: your-docker-org/api_app:latest
+
+    command: celery -A core.celery.celery_app worker --loglevel=info -E
+    depends_on:
+      - redis
+    env_file: ./.env
+    networks:
+      - garden-net
+
+    healthcheck:
+      test: [ "CMD", "celery", "-A", "core.celery.celery_app", "inspect", "ping" ]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  scheduler:
+    image: your-docker-org/api_app:latest
+
+    command: celery -A core.celery.celery_app beat --scheduler redbeat.RedBeatScheduler --loglevel=info
+    depends_on:
+      - redis
+    env_file: ./.env
+    networks:
+      - garden-net
+
+  flower:
+    image: your-docker-org/api_app:latest
+
+    command: celery -A core.celery.celery_app flower --loglevel=info --port=5555
+    ports:
+      - "5555:5555"
+    depends_on:
+      redis:
+        condition: service_started
+      celery:
+        condition: service_healthy
+    env_file: ./.env
+    networks:
+      - garden-net
+
+volumes:
+  garden-db-data:

@@ -1,0 +1,11 @@
+services:
+  admin-panel:
+    image: your-docker-org/admin_app:latest
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    networks:
+      - garden-net

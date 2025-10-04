@@ -1,0 +1,12 @@
+include:
+  - ./admin/docker-compose.yml
+  - ./agent/docker-compose.yml
+  - ./api/docker-compose.yml
+  - ./csr_signer/docker-compose.yml
+  - ./mock_mqtt/docker-compose.yml
+  - ./mqtt_broker/docker-compose.yml
+
+networks:
+  garden-net:
+    driver: bridge
+    enable_ipv6: false

@@ -1,0 +1,24 @@
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    restart: unless-stopped
+    ports:
+      - "8883:8883"
+    volumes:
+      - ../config/mqtt-server/mosquitto/config:/mosquitto/config
+      - ../config/mqtt-server/mosquitto/certs:/mosquitto/certs
+      # - ../config/mqtt-server/mosquitto/data:/mosquitto/data
+      # - ../config/mqtt-server/mosquitto/log:/mosquitto/log
+    env_file:
+      - ./.env
+    user: "1883:1883"
+    depends_on:
+      - cert-generator
+    networks:
+      - garden-net
+
+  cert-generator:
+    image: your-docker-org/mqtt_broker_app:latest
+    volumes:
+      - ../config/mqtt-server:/app/mqtt-server
+    restart: "no"
