@@ -82,6 +82,16 @@ else
 	cd $(SERVICE) && docker compose ps
 endif
 
+.PHONY: pull
+pull:
+ifeq ($(SERVICE), all)
+	@echo ">>> Pulling images for all services"
+	docker compose pull
+else
+	@echo ">>> Pulling images for $(SERVICE) service"
+	cd $(SERVICE) && docker compose pull
+endif
+
 .PHONY: restart
 restart: stop run-detached
 	@echo ">>> Services restarted"
@@ -90,7 +100,7 @@ restart: stop run-detached
 list:
 	@echo "Available services:"
 	@for s in $(SERVICES); do \
-		echo "  - $$s"; \
+		echo "  - $s"; \
 	done
 
 .PHONY: help

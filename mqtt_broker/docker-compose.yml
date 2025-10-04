@@ -18,7 +18,7 @@ services:
       - garden-net
 
   cert-generator:
-    image: your-docker-org/mqtt_broker_app:latest
+    image: ghcr.io/filxxip/mqtt_broker_app:latest
     volumes:
       - ../config/mqtt-server:/app/mqtt-server
     restart: "no"

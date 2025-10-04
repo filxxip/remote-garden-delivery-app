@@ -1,6 +1,6 @@
 services:
   mqtt-mock-publisher:
-    image: your-docker-org/mock_mqtt_app:latest
+    image: ghcr.io/filxxip/mock_mqtt_app:latest
 
     restart: unless-stopped
     env_file:

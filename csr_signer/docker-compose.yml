@@ -1,6 +1,6 @@
 services:
   csr-signer:
-    image: your-docker-org/csr_signer_app:latest
+    image: ghcr.io/filxxip/csr_signer_app:latest
 
     restart: unless-stopped
     volumes:

@@ -1,6 +1,6 @@
 services:
   api:
-    image: your-docker-org/api_app:latest
+    image: ghcr.io/filxxip/api_app:latest
 
     restart: unless-stopped
     env_file:
@@ -40,7 +40,7 @@ services:
       - garden-net
 
   celery:
-    image: your-docker-org/api_app:latest
+    image: ghcr.io/filxxip/api_app:latest
 
     command: celery -A core.celery.celery_app worker --loglevel=info -E
     depends_on:
@@ -57,7 +57,7 @@ services:
       start_period: 40s
 
   scheduler:
-    image: your-docker-org/api_app:latest
+    image: ghcr.io/filxxip/api_app:latest
 
     command: celery -A core.celery.celery_app beat --scheduler redbeat.RedBeatScheduler --loglevel=info
     depends_on:
@@ -67,7 +67,7 @@ services:
       - garden-net
 
   flower:
-    image: your-docker-org/api_app:latest
+    image: ghcr.io/filxxip/api_app:latest
 
     command: celery -A core.celery.celery_app flower --loglevel=info --port=5555
     ports:
