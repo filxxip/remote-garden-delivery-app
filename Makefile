@@ -1,4 +1,4 @@
-SERVICES = admin agent api mqtt_broker csr_signer mock_mqtt
+SERVICES = admin agent api mqtt_broker csr_signer mock_mqtt gh_proxy
 
 SERVICE ?= all
 

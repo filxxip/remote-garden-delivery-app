@@ -5,6 +5,7 @@ include:
   - ./csr_signer/docker-compose.yml
   - ./mock_mqtt/docker-compose.yml
   - ./mqtt_broker/docker-compose.yml
+  - ./gh_proxy/docker-compose.yml
 
 networks:
   garden-net:

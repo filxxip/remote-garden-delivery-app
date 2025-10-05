@@ -1,0 +1,11 @@
+services:
+  gh-proxy:
+    image: ghcr.io/filxxip/gh_proxy_app:latest
+    restart: unless-stopped
+    env_file:
+      - ./.env
+      - ../.env
+    networks:
+      - garden-net
+    ports:
+      - 7999:7999
