@@ -1,8 +1,8 @@
 services:
   admin-panel:
     image: ghcr.io/filxxip/admin_app:latest
-    # ports:
-    #   - "8001:8001"
+    ports:
+      - "8001:8001"
     depends_on:
       - db
     env_file:
