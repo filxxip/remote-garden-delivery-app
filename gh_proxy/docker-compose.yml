@@ -7,5 +7,5 @@ services:
       - ../.env
     networks:
       - garden-net
-    ports:
-      - 7999:7999
+    # ports:
+    #   - 7999:7999

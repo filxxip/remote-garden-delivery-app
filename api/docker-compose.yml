@@ -6,8 +6,8 @@ services:
     env_file:
       - ./.env
       - ../.env
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     depends_on:
       - db
     volumes:
@@ -23,8 +23,8 @@ services:
 
     restart: unless-stopped
     env_file: ./.env
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     volumes:
       - garden-db-data:/var/lib/postgresql/data
     networks:
@@ -34,8 +34,8 @@ services:
     image: redis:6.2-alpine
 
     restart: unless-stopped
-    ports:
-      - "6379:6379"
+    # ports:
+    #   - "6379:6379"
     networks:
       - garden-net
 
@@ -70,8 +70,8 @@ services:
     image: ghcr.io/filxxip/api_app:latest
 
     command: celery -A core.celery.celery_app flower --loglevel=info --port=5555
-    ports:
-      - "5555:5555"
+    # ports:
+    #   - "5555:5555"
     depends_on:
       redis:
         condition: service_started

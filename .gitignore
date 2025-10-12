@@ -76,3 +76,6 @@ config/mqtt-server/mosquitto/log/
 firebase-service-account.json
 docs/_build
 .env
+
+*.crt
+*.key

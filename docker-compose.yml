@@ -6,6 +6,7 @@ include:
   - ./mock_mqtt/docker-compose.yml
   - ./mqtt_broker/docker-compose.yml
   - ./gh_proxy/docker-compose.yml
+  - ./nginx/docker-compose.yml
 
 networks:
   garden-net:

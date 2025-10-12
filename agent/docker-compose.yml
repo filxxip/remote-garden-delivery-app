@@ -3,8 +3,8 @@ services:
     image: ghcr.io/filxxip/agent_app:latest
     container_name: remote-garden-agent
     restart: unless-stopped
-    ports:
-      - "9000:9000"
+    # ports:
+    #   - "9000:9000"
     env_file:
       - ./.env
     networks:
