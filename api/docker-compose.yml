@@ -15,6 +15,7 @@ services:
       - ../config/mqtt-server/backend/backend.key:/app/ca/backend.key:ro
       - ../config/mqtt-server/certs/ca.crt:/app/ca/ca.crt:ro
       - ../config/firebase/firebase-service-account.json:/app/firebase-service-account.json:ro
+      - ./.frames:/app/frames
     networks:
       - garden-net
 
