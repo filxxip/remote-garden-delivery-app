@@ -14,6 +14,8 @@ fi
 
 openssl version
 
+echo "CN set as $DOMAIN"
+
 generate_certs() {
     echo "Generating SSL certificates..."
     
