@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     env_file:
       - ./.env
+    depends_on:
+      cert-generator:
+        condition: service_completed_successfully
     volumes:
       - ../config/mqtt-server/mock-client:/app/certs/mock-client:ro
       - ../config/mqtt-server/certs:/app/certs/ca:ro

@@ -13,7 +13,8 @@ services:
       - ./.env
     user: "1883:1883"
     depends_on:
-      - cert-generator
+      cert-generator:
+        condition: service_completed_successfully
     networks:
       - garden-net
 

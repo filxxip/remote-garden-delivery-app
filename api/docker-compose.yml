@@ -9,7 +9,10 @@ services:
     # ports:
     #   - "3000:3000"
     depends_on:
-      - db
+      db:
+        condition: service_started
+      cert-generator:
+        condition: service_completed_successfully
     volumes:
       - ../config/mqtt-server/backend/backend.crt:/app/ca/backend.crt:ro
       - ../config/mqtt-server/backend/backend.key:/app/ca/backend.key:ro
