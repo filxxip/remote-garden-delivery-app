@@ -14,3 +14,5 @@ services:
     entrypoint: ["/docker-entrypoint.sh"]
     networks:
       - garden-net
+    environment:
+      - DOMAIN=${DOMAIN}

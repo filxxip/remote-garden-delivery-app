@@ -22,7 +22,7 @@ generate_certs() {
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
       -keyout "$KEY_FILE" \
       -out "$CERT_FILE" \
-      -subj "/C=PL/ST=Mazovia/L=Warsaw/O=Dev/CN=localhost" 2>&1
+      -subj "/C=PL/ST=Mazovia/L=Warsaw/O=Dev/CN=${DOMAIN}" 2>&1
     
     local result=$?
     
