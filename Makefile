@@ -103,6 +103,20 @@ list:
 		echo "  - $s"; \
 	done
 
+.PHONY: clean-certs
+clean-certs:
+	@echo ">>> Cleaning all generated certificates and MQTT data..."
+	@find config/mqtt-server -type f \( \
+		-name "*.crt" -o \
+		-name "*.csr" -o \
+		-name "*.key" -o \
+		-name "*.srl" \
+	\) -exec rm -f {} +
+	@rm -rf config/mqtt-server/mosquitto/data/* 2>/dev/null || true
+	@rm -rf config/mqtt-server/mosquitto/log/* 2>/dev/null || true
+	@echo ">>> Done. All certificates and MQTT data removed."
+
+
 .PHONY: help
 help:
 	@echo ""
@@ -119,6 +133,7 @@ help:
 	@echo "  ps             List running containers"
 	@echo "  restart        Stop and restart containers in background"
 	@echo "  list           Show available services"
+	@echo "  clean-certs    Clean all certs"
 	@echo ""
 	@echo "Variables:"
 	@echo "  SERVICE        Service to manage (default: all)"

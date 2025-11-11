@@ -11,7 +11,7 @@ services:
       # - ../config/mqtt-server/mosquitto/log:/mosquitto/log
     env_file:
       - ./.env
-    user: "1883:1883"
+    user: "${MOSQUITTO_UID}:${MOSQUITTO_GID}"
     depends_on:
       cert-generator:
         condition: service_completed_successfully
@@ -23,3 +23,6 @@ services:
     volumes:
       - ../config/mqtt-server:/app/mqtt-server
     restart: "no"
+    env_file:
+      - ./.env
+      - ../.env

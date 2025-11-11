@@ -11,7 +11,7 @@ http {
 
     server {
         listen 443 ssl;
-        server_name gh-proxy.vps-2505986b.vps.ovh.net;
+        server_name gh-proxy.${SERVER_HOSTNAME};
 
         ssl_certificate /etc/nginx/certs/localhost.crt;
         ssl_certificate_key /etc/nginx/certs/localhost.key;
