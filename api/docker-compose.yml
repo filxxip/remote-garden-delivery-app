@@ -36,7 +36,9 @@ services:
 
   redis:
     image: redis:6.2-alpine
-
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
     restart: unless-stopped
     # ports:
     #   - "6379:6379"
@@ -87,3 +89,4 @@ services:
 
 volumes:
   garden-db-data:
+  redis-data:
